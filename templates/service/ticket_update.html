@@ -1,0 +1,73 @@
+{% extends 'base/base.html' %}
+{% block title %}Technology{% endblock %}
+{% block subtitle %}{{ticket.t_type}} Ticket Update{% endblock %}
+
+{% block content %}
+  <div class="row">
+    <div class="jumbotron col-lg-4 pt-3 pb-0 bg-warning h-100">
+      <h4 class="text-center jumbotron p-2 m-0 bg-black text-warning">Submitted Details</h4>
+      <div class="jumbotron bg-light my-5 p-4">
+        <div class="jumbotron m-0 py-1 bg-black text-white">
+          <div class="jumbotron m-0 py-1 bg-black text-white">
+            <p class="m-0 text-center">Reported By: {{ticket.submit_by}}</p>
+            <p class="m-0 text-center">Store: {{ticket.store.store_id}} - {{ticket.store.name}}</p>
+          </div>
+        </div>
+      
+        
+        <label class="mb-0" for="desc">Brief Description</label>
+        <p class="text-muted">{{ticket.short_desc}}</p>
+        <label class="mb-0" for="desc">Detailed Description</label>
+        <small class="text-muted d-block overflow-auto">{{ticket.desc}}</small>
+        <label class="mb-0" for="ts">Troubleshooting</label>
+        <small class="text-muted d-block overflow-auto">{{ticket.ts}}</small>
+        <label class="mb-0 mt-3" for="ts">Created On:&nbsp;</label>
+        <small class="text-muted">{{ticket.created_at}}</small>
+      </div>
+    </div> <!--END OF SUBMITTED DETAILS-->
+    
+    <div class="jumbotron col-lg-7 offset-lg-1 py-3 bg-light h-100">
+    <form action="/service/ticket_update_process/{{ticket.id}}/" method="POST">
+      {% csrf_token %}
+      <h4 class="text-center jumbotron p-2 m-0 mb-5 bg-warning text-black">Ticket Update Form</h4>
+      <div class="form-row">
+        
+        <div class="form-group col-md-6">
+          <label for="status">Ticket Status</label>
+          <select id="status" name="status" class="form-control">
+            <option selected>{{ticket.status}}</option>
+            <option>Acknowledged</option>
+            <option>In Progress</option>
+            <option>Escalated</option>
+            <option>Waiting On Part</option>
+            <option>Unable to Reach User</option>
+            <option>Closed</option>
+          </select>
+        </div>
+  
+        <div class="form-group col-md-6">
+          <label for="assign_to">Assign Tech</label>
+          <select id="assign_to" name="assign_to" class="form-control">
+            <option selected>{{ticket.assign_to}}</option>
+            {% for tech in tech_list %}
+            <option>{{tech.user.user.first_name}}</option>
+            {% endfor %}
+          </select>
+        </div>
+
+      </div>
+
+      <div class="form-group">
+        <label for="tech_note">Tech Notes</label>
+        <textarea class="form-control" name="tech_note" id="tech_note" rows="5" placeholder="What issues did you discover?">{{ticket.tech_note}}</textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="res_note">Resolution Notes</label>
+        <textarea class="form-control" name="res_note" id="res_note" rows="5" placeholder="What did you do to resolve the issue?">{{ticket.res_note}}</textarea>
+      </div>
+      <input type="submit" class="btn btn-danger text-warning font-weight-bold" value="Update">
+    </form>
+  </div> <!--END OF Update COL--> 
+  </div> <!--END OF ROW-->
+{% endblock %}

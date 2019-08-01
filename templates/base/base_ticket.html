@@ -1,0 +1,45 @@
+{% extends 'base/base.html' %}
+{% block title %}{% endblock %}
+{% block subtitle %}{% endblock %}
+
+{% block content %}
+  <div class="jumbotron bg-light">
+    <form action="/service/create_ticket/" method="POST">
+      {% csrf_token %}
+      <div class="form-row">
+        <input type="hidden" name="t_type" value="{% block t_type %}{% endblock %}">
+        <div class="form-group col-md-6">
+          <label for="submit_by">Name</label>
+          <input type="text" class="form-control" id="submit_by" name="submit_by" placeholder="Tell me, what's your name?">
+        </div>
+  
+        <div class="form-group col-md-6">
+          <label for="store_id">Store</label>
+          <select id="store_id" name="store_id" class="form-control">
+            <option selected>Choose...</option>
+            {% for store in store_list %}
+            <option >{{store.store.name}} - {{store.store_id}}</option>
+            {% endfor %}
+          </select>
+        </div>
+
+      </div>
+
+      <div class="form-group">
+        <label for="short_desc">Short Description</label>
+        <input class="form-control" name="short_desc" id="short_desc" placeholder="What seems to be the issue?">
+      </div>
+
+      <div class="form-group">
+        <label for="desc">Detailed Description</label>
+        <textarea class="form-control" name="desc" id="desc" rows="3" placeholder="What problems are you experiencing?"></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="ts">Troubleshooting Completed</label>
+        <textarea class="form-control" name="ts" id="ts" rows="3" placeholder="What troubleshooting have you done?"></textarea>
+      </div>
+      <input type="submit" class="btn btn-danger text-warning font-weight-bold">
+    </form>
+  </div>  
+{% endblock %}

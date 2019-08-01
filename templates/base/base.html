@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Rardin | {% block title %}Base{% endblock %}</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css?family=Oxygen&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/e2cd4330ca.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  {% load static %}
+  <link rel="icon" href="{% static 'main/images/main_logo.png' %}">
+  <link rel="stylesheet" href="{% static 'main/css/style.css' %}">    
+  <script src="{% static 'main/js/script.js' %}"></script>
+  <script src="{% static 'service/js/message.js' %}"></script>
+  
+  
+</head>
+<body>
+  <!--NAV BAR-->
+  <nav class="navbar sticky-top navbar-expand-lg navbar-light px-5 bg-black mb-0">
+    <a class="navbar-brand" href="/"><img class="main_logo" src="{% static 'main/images/main_logo.png' %}"></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="fas fa-bars fa-2x text-warning"></span>
+      </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav mr-auto">
+        {% if user.is_superuser %}
+        <li class="nav-item text-center mr-3">
+          <a class="nav-link text-warning fas fa-users-cog d-block" href="/admin/"></a>
+          <small class="text-white d-block">Admin</small>
+        </li>
+        {% endif %}
+        <li class="nav-item text-center mr-3">
+          <a class="nav-link text-danger fab fa-app-store-ios d-block" href="/"></a>
+          <small class="text-white d-block">Apps</small>
+        </li>
+        <li class="nav-item text-center mr-3">
+          <a class="nav-link text-warning fas fa-cash-register d-block" href="#"></a>
+          <small class="text-white d-block">Store Ops</small>
+        </li>
+        <li class="nav-item text-center mr-3">
+          <a class="nav-link text-danger fas fa-sitemap d-block" href="#"></a>
+          <small class="text-white d-block">District Ops</small>
+        </li>
+        <li class="nav-item text-center mr-3">
+          <a class="nav-link text-warning fas fa-tools d-block" href="/service/"></a>
+          <small class="text-white d-block">Maintenance</small>
+        </li>
+        <li class="nav-item text-center mr-3">
+          <a class="nav-link text-danger fas fa-bullhorn d-block" href="#"></a>
+          <small class="text-white d-block">Marketing</small>
+        </li>
+        <li class="nav-item text-center mr-3">
+          <a class="nav-link text-warning fas fa-user d-block" href="#"></a>
+          <small class="text-white d-block">HR</small>
+        </li>
+        <li class="nav-item text-center mr-3">
+          <a class="nav-link text-danger fas fa-poll d-block" href="#"></a>
+          <small class="text-white d-block">Reports</small>
+        </li>
+      </ul>
+      <ul class="navbar-nav ml-auto">
+        {% if user.is_authenticated %}
+        <li class="nav-item text-center mr-3">
+          <a class="nav-link text-danger far fa-user-circle d-block" href="#">
+              <small class="font-weight-bold d-inline text-warning">{{ user.first_name }}</small>
+          </a>
+          <small class="text-white d-block">Profile</small>
+        </li>
+        <li class="nav-item text-center mr-3">
+          <a class="nav-link text-warning far fa-envelope d-block" href="#"></a>
+          <small class="text-white d-block">Inbox</small>
+        </li>
+        <li class="nav-item text-center mr-3">
+          <a class="nav-link text-danger far fa-bell d-block" href="#"></a>
+          <small class="text-white d-block">Notification</small>
+        </li>
+        <li class="nav-item text-center mr-3">
+          <a class="nav-link text-warning fas fa-sign-out-alt d-block" href="/logout"></a>
+          <small class="text-white d-block">Sign Out</small>
+        </li>
+      </div> <!--END OF NAVBAR COLLAPSE-->
+      {% else %}
+      <li class="nav-item">
+      <a class="btn btn-sm btn-outline-warning text-danger font-weight-bold" href="/login">Sign In <i class="fas fa-sign-in-alt"></i></a>
+      </li>
+      {% endif %}
+      
+    </ul>  
+  </nav>
+  <div class="jumbotron main_header p-0">
+    <div class="bn-bg-img pt-5" style="background-image: url({% static 'main/images/hm.jpg' %})">
+      <h1 class="text-left pl-5 pb-5">{% block subtitle %}Rardin Companies{% endblock %}</h1>
+    </div>
+  </div>
+  <!--END OF NAV BAR-->
+  <div class="container">
+    {% block content %}
+    {% endblock %}   
+  </div>
+  <nav class="footer navbar navbar-expand-lg navbar-light bg-black my-0 py-0">
+    <ul class="navbar-nav mx-auto d-inline">
+      <li class="nav-item d-inline"><a class="footer-link nav-link text-danger d-inline" href="#">Contact</a></li>
+      <li class="nav-item d-inline"><small class="footer-link nav-link text-danger d-inline">|</small></li>
+      <li class="nav-item d-inline"><a class="footer-link nav-link text-danger d-inline" href="#">Help</a></li>
+      <li class="nav-item d-inline"><small class="footer-link nav-link text-danger d-inline">|</small></li>
+      <li class="nav-item d-inline"><a class="footer-link nav-link text-danger d-inline" href="#">Store Details</a></li>
+    </ul>
+  </nav>
+</body>
+</html>

@@ -1,0 +1,97 @@
+
+p, h1, h2, h3, h4, h5, small {
+  font-family: 'Oxygen', sans-serif !important;
+}
+
+.bg-warning{
+  background-color: #FFC72C !important;
+}
+
+.bg-danger {
+  background-color: #DA291C !important;
+}
+
+.bg-black {
+  background-color: #27251F !important;
+}
+
+.text-warning {
+  color: #FFC72C !important;
+}
+
+.text-danger {
+  color: #DA291C !important;
+}
+
+.text-black {
+  color: #27251F !important;
+}
+
+.main_logo {
+  width: 75px;
+}
+
+.nav-link {
+  color: #fff !important;
+  font-size: 1.5rem;
+}
+
+.bn-bg-img {
+  background-repeat: no-repeat;
+  max-height: 100%;
+  width: auto;
+  max-width: 100%;
+  background-size: cover;
+}
+
+.lg-bg-img {
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 1000px;
+  max-height: 100%;
+  width: auto;
+  max-width: 100%;
+}
+
+.app-container{
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  text-align: center;
+  height: 150px;
+  text-decoration-line: none !important;
+  margin: .25rem .5rem; 
+  padding: 1.5rem;
+}
+
+.app-icon {
+  min-width: 100px;
+  max-width: 100%;
+  max-height: 100px;
+}
+
+
+
+.main_header, .navbar, .jumbotron {
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+h1, td {
+  text-shadow: 2px 2px 4px #00000033;
+}
+
+td {
+  font-size: 80%;
+  vertical-align: middle;
+}
+
+.footer-link {
+  font-size: 1rem; 
+}
+
+.footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+a {
+  text-decoration: none !important;
+}

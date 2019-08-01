@@ -1,0 +1,87 @@
+{% extends 'base/base.html' %}
+{% block title %}Technology{% endblock %}
+{% block subtitle %}{{ticket.t_type}} Ticket View{% endblock %}
+
+{% block content %}
+  <div class="row">
+    <div class="jumbotron col-lg-4 pt-3 pb-0 bg-warning h-100">
+      <h4 class="text-center jumbotron p-2 m-0 bg-black text-warning">Submitted Details</h4>
+      <div class="jumbotron bg-light my-5 p-4">
+        <div class="jumbotron m-0 py-1 bg-black text-white">
+          <p class="m-0 text-center">Reported By: {{ticket.submit_by}}</p>
+          <p class="m-0 text-center">Store: {{ticket.store.store_id}} - {{ticket.store.name}}</p>
+        </div>
+        <label class="mb-0" for="desc">Brief Description</label>
+        <p class="text-muted">{{ticket.short_desc}}</p>
+        <label class="mb-0" for="desc">Detailed Description</label>
+        <small class="text-muted d-block overflow-auto">{{ticket.desc}}</small>
+        <label class="mb-0" for="ts">Troubleshooting</label>
+        <small class="text-muted d-block overflow-auto">{{ticket.ts}}</small>
+        <label class="mb-0 mt-3" for="ts">Created On:&nbsp;</label>
+        <small class="text-muted">{{ticket.created_at}}</small>
+      </div>
+    </div> <!--END OF SUBMITTED DETAILS-->
+    <div class="jumbotron col-lg-7 offset-lg-1 py-3 bg-light h-100">
+      <h4 class="text-center jumbotron p-2 m-0 mb-5 bg-warning text-black">Ticket Status Details</h4>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="status">Ticket Status</label>
+            <p class="text-muted" id="status">{{ticket.status}}</p>
+        </div>
+        <div class="form-group col-md-6">
+            <label for="assign_to">Assigned Tech</label>
+              <p class="text-muted" id="assign_to">{{ticket.assign_to}}</p>
+          </div>
+      </div>
+      <div class="form-group">
+        <label for="tech_note">Tech Notes</label>
+        <small class="text-muted d-block" id="tech_note">{{ticket.tech_note}}</small>
+      </div>
+      <div class="form-group">
+        <label for="res_note">Resolution Notes</label>
+        <small class="text-muted d-block" id="res_note">{{ticket.res_note}}</small>
+      </div>  
+      <div class="form-group m-0">
+        <label class="m-0" for="ts">Last Updated:&nbsp;</label>
+        <small class="text-muted">{{ticket.last_update.user.first_name}} {{ticket.last_update.user.last_name}} | {{ticket.updated_at}}</small>
+      </div>
+      <div class="form-group m-0">
+        <label class="m-0" for="ts">Last Viewed:&nbsp;&nbsp;&nbsp;</label>
+        <small class="text-muted">{{ticket.last_view.user.first_name}} {{ticket.last_view.user.last_name}} | {{ticket.viewed_at}}</small>
+      </div>
+      <div class="jumbotron mt-5 py-3 px-3">
+        <div id="messages" class="row jumbotron bg-light mx-1 mb-1 p-1">
+            <h4 class="text-center jumbotron p-2 m-0 mb-1 col-12 bg-black text-warning">Messages</h4>
+          {% for message in messages %}
+          {% if message.sender.user.id == user.id %}
+          <div class="jumbotron bg-warning my-1 col-8 p-2 ml-auto">
+            <div class="row">
+              <p class="mb-0 col-10">{{message.message}}</p>
+              <div class="col-2 text-right">
+                <button id="{{message.id}}" type="button" class="delete btn btn-sm fas fa-trash-alt text-danger" style="background: none" onclick="delete_message(this.id);"></button>
+              </div>
+            </div>
+            <small class="text-muted text-right d-block" >{{message.sender.user.first_name}} {{message.sender.user.last_name}} | {{message.created_at}}</small>
+            </div>
+          {% else %}
+          <div class="jumbotron my-1 col-8 p-2 mr-auto">
+            <p class="mb-0">{{message.message}}</p>
+            <small class="text-muted text-right d-block" >{{message.sender.user.first_name}} {{message.sender.user.last_name}} | {{message.created_at}}</small>
+          </div>
+          {% endif %}
+          {% endfor %}
+        </div>
+      <form method="POST" id="message_form">
+      {% csrf_token %}
+        <div class="row jumbotron bg-warning mx-1 px-1 my-0 py-1">
+          <input type="hidden" id="ticket_id" value="{{ticket.id}}">
+          <input class="form-control col-11" type="text" name="message" id="message" placeholder="Write a message...">
+          <button type="button" id="send" class="btn btn-warning col-1 p-0">
+            <i class="nav-link fas fa-arrow-circle-up p-0"></i>
+          </button>
+        </div>
+      </form>
+      </div> <!--END OF MESSAGES CONTAINER-->
+  </div> <!--END OF View and Message COL--> 
+  </div> <!--END OF ROW-->
+{% endblock %}

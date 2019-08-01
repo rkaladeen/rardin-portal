@@ -1,0 +1,64 @@
+07/28/2019 23:06
+- Begin development on Update ticket templates
+
+Bug List:
+Base.html
+Nav bar needs dropdown button on collapse
+
+tech_ticket_update.html
+- Scroll overflow on submitted details
+
+Back-End Upgrades
+- Make model for ticket status
+
+Current To do:
+Research how to default a foreign key field, changed to standard character field
+
+07/29/2019 23:00
+- Continued development on back-end for update and views template back-end for Technology Ticket
+
+Bug List:
+1 .Nav bar needs dropdown button on collapse
+2 .Last view and last update need to have auto values entered based on function declarations not auto_now=True
+
+To Do Tomorrow:
+1. Work on Views front-end for 'view template' 
+2. Fix update bug
+3. Begin building messaging application, migrate to new app since module will be used in other dept
+
+Possible Additional Work:
+1. Add job code models
+
+
+07/30/2019 23:00
+- Worked on front-end for index page and ticket views
+
+Bug List:
+1. Sizing of images to ensure responsiveness cross-platform, fixed 7/31/2019
+
+To Do Tomorrow:
+1. Work on messaging application
+2. Build general and equipment ticket groups
+
+Possible Additional Work:
+1. Add job code models
+2. Build User Profile page
+
+
+07/31/2019 23:00
+- Worked on messaging application and adding ajax to create and delete
+
+Bug List:
+1. None  
+
+To Do Tomorrow:
+1. Build Admin User Profile page
+2. Interate department and store assignment models into user profile to allow for easier assignments
+
+Possible Additional Work:
+1. Begin designing my_shift application for Shift Managers
+
+
+
+
+Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti porro quis numquam dicta tempora exercitationem quas voluptatibus praesentium laborum explicabo dolorum culpa fugit quod similique quos, laudantium ex quasi obcaecati.

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Rardin | Login</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css?family=Oxygen&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/e2cd4330ca.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'main/css/style.css' %}">    
+  <script src="{% static 'main/js/script.js' %}"></script>
+</head>
+<body>
+  <div class="lg-bg-img pt-5" style="background-image: url({% static 'main/images/bg.jpg' %})">
+
+    <div class="jumbotron mx-auto mt-5 col-md-3">
+      <h3 class="d-inline">Log in to <h2 class="d-inline text-danger">Rardin Portal</h2></h3>
+      <form method="POST">
+        {% csrf_token %}
+        <div class="form-group">
+          <label for="username">Username</label>
+          <input type="text" class="form-control" id="username" name="username">
+          
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" class="form-control" id="password" name="password">
+        </div>
+        <div class="form-row">
+          <a class="text-muted col" href="/">Forgot your password?</a>
+          <button type="submit" class="btn bg-warning text-danger font-weight-bold col-3">Log In</button>
+        </div>
+      </form>
+    
+  </div>
+  </div>
+</body>
+</html>

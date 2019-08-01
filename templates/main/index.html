@@ -1,0 +1,109 @@
+{% extends 'base/base.html' %}
+{% block title %}Home{% endblock %}
+{% block subtitle %}Rardin Applications{% endblock %}
+
+{% block content %}
+    <div class="row">
+      <a class="app-container jumbotron col btn-light" href="https://rardincompanies.com/" target="_blank">
+        {% load static %}
+        <img class="app-icon" src="{% static 'main/images/rardin.png' %}" alt="image">
+        <small class="d-block font-weight-bold text-muted">Company Website</small>
+      </a>
+
+      <a class="app-container jumbotron col btn-light" href="https://mymail.mcd.com/" target="_blank">
+        {% load static %}
+        <img class="app-icon" src="{% static 'main/images/outlook.png' %}" alt="image">
+        <small class="d-block font-weight-bold text-muted">Email</small>
+      </a>
+      
+      <a class="app-container jumbotron col btn-light" href="https://perf004.mcd.com/MatrixGlobal/LoginAuth.aspx" target="_blank">
+        {% load static %}
+        <img class="app-icon rounded" src="{% static 'main/images/matrix.png' %}" alt="image">
+        <small class="d-block font-weight-bold text-muted">Matrix</small>
+      </a>
+      
+      <a class="app-container jumbotron col btn-light" href="https://www.mcdaltametrics.com/" target="_blank">
+        {% load static %}
+        <img class="app-icon rounded" src="{% static 'main/images/erestaurant.png' %}" alt="image">
+        <small class="d-block font-weight-bold text-muted">e*Restaurant</small>
+      </a>
+    </div> <!--END OF ROW 1-->
+
+    <div class="row">
+      <a class="app-container jumbotron col btn-light" href="https://hme-live-cloud.azurewebsites.net/" target="_blank">
+        {% load static %}
+        <img class="app-icon" src="{% static 'main/images/hme.svg' %}" alt="image">
+        <small class="d-block font-weight-bold text-muted">ZOOM</small>
+      </a>
+      
+      <a class="app-container jumbotron col btn-light" href="https://dotcomm.qsrsoft.com/clients/login.php" target="_blank">
+        {% load static %}
+        <img class="app-icon" src="{% static 'main/images/qsr.png' %}" alt="image">
+        <small class="d-block font-weight-bold text-muted">dotComm</small>
+      </a>
+
+      <a class="app-container jumbotron col btn-light" href="https://prod.ebos.qsrsoft.com/" target="_blank">
+        {% load static %}
+        <img class="app-icon" src="{% static 'main/images/qsr.png' %}" alt="image">
+        <small class="d-block font-weight-bold text-muted">eBos</small>
+      </a>
+
+      <a class="app-container jumbotron col btn-light" href="https://www.atmcd.com/" target="_blank">
+        {% load static %}
+        <img class="app-icon" src="{% static 'main/images/atmcd.png' %}" alt="image">
+      </a>
+    </div> <!--END OF ROW 2-->
+
+    <div class="row">
+      <a class="app-container jumbotron col btn-light" href="https://login2.peoplematter.com/adfs/ls/?wa=wsignin1.0&wtrealm=https%3a%2f%2fmy.peoplematter.com%2f&wctx=rm%3d0%26id%3dpassive%26ru%3d%252f&wct=2019-01-25T18%3a08%3a35Z&whr=http%3a%2f%2flogin2.peoplematter.com%2fadfs%2fservices%2ftrust" target="_blank">
+        {% load static %}
+        <img class="app-icon" src="{% static 'main/images/snag.png' %}" alt="image">
+        <small class="d-block font-weight-bold text-muted">People Matter</small>
+      </a>
+        
+      <a class="app-container jumbotron col btn-light" href="https://www.servicecheck.net/" target="_blank">
+        {% load static %}
+        <img class="app-icon" src="{% static 'main/images/servicecheck.png' %}" alt="image"> 
+        <small class="d-block font-weight-bold text-muted">Complaints</small>    
+      </a>
+
+      <a class="app-container jumbotron col btn-light" href="https://gafs.mcd.com/adfs/ls/?SAMLRequest=7b0HYBxJliUmL23Ke39K9UrX4HShCIBgEyTYkEAQ7MGIzeaS7B1pRyMpqyqBymVWZV1mFkDM7Z28995777333nvvvfe6O51OJ%2fff%2fz9cZmQBbPbOStrJniGAqsgfP358Hz8iHjfZolw9Ol638%2bWr%2fBet86ZNz55%2b9tHv%2f2k%2beXh%2b%2funD7U8f7Hy6vf%2fp%2fsPthw93D7ankwez%2bzs7%2bcPz%2fP5H6U%2fmdVNUy88%2b2hvvfJSeNc06P1s2bbZs6aOd3YfbO3vbuwdv9nYe3d97tLs33tvZ%2f6mP0qfUS7HMWn5z3rar5tHduxfZeTNeTGfjabW4m83Om7tlc%2fej9KRaNjnArevloypriubRMlvkzaN2%2buj18RfPH1HPj6bS6NF62azyaXFe5LOP0neLctk84vFtfntVV201rcqPjh7zCGp5dfNLWdPkNUbw0RFGEB0Atbgspnlzt63XTfv4rkA%2fekxjmhV4t3nPnh4fr2dFvpzmr4iCdTHFp%2b7DI0PKOl9V9MbyYtwsLoDO47u2jfs1gHHX4UR%2f9Jni6P8B&Signature=dxUUhcN6h9Cjtts9er%2fVdC9ytwh2s1zG%2bngbGu6%2bDWDz%2bOIutaSsPTAsY8fafou%2fxzf64IOd5pFHtWJNX6KpM7mWsQpvtGeQJ9v4gXM2u28soRWYGwih9J110uP2z6If2FzGJZP0ZvpWLH0ByXLch%2fIKfLjvDzjH5it%2f65aGiR3wDOJwCe%2fhKxiJNVuyrN3EcAsG9%2bkpT5cCnGdIgd1HPXmxvKYyrsW3qUMCC43vJdJvodJiW8l%2bl64EuchCrE188sr9P2t6%2fSR%2bYJX8ShgHLR149bgjd4xNBgoNzWX35rxDzVpo7SD2fop7H3fpvax8nsHM8zGaTzhjf0mtBr5LDQ%3d%3d&SigAlg=http%3a%2f%2fwww.w3.org%2f2001%2f04%2fxmldsig-more%23rsa-sha256" target="_blank">
+        {% load static %}
+        <img class="app-icon" src="{% static 'main/images/voice.png' %}" alt="image"> 
+           
+      </a>
+
+      <a class="app-container jumbotron col btn-light" href="https://fredatmcd.read.inkling.com/read/" target="_blank">
+        {% load static %}
+        <img class="app-icon" src="{% static 'main/images/fred.png' %}" alt="image"> 
+          
+      </a>
+    </div> <!--END OF ROW 3-->
+
+    <div class="row">
+      <a class="app-container jumbotron col btn-light" href="https://us-uniforms.mcdonalds.com/" target="_blank">
+        {% load static %}
+        <img class="app-icon rounded" src="{% static 'main/images/uniform.png' %}" alt="image"> 
+        <small class="d-block font-weight-bold text-muted">Uniforms</small>    
+      </a>
+
+      <a class="app-container jumbotron col btn-light" href="https://ws.frankefs.com/shop3/" target="_blank">
+        {% load static %}
+        <img class="app-icon rounded" src="{% static 'main/images/franke.png' %}" alt="image"> 
+        <small class="d-block font-weight-bold text-muted">Equipment</small>
+      </a>
+
+      <a class="app-container jumbotron col btn-light" href="https://otp.mcd.com/" target="_blank">
+        {% load static %}
+        <img class="app-icon rounded" src="{% static 'main/images/otp.png' %}" alt="image"> 
+        <small class="d-block font-weight-bold text-muted">Technology</small>    
+      </a>
+
+      <a class="app-container jumbotron col btn-light" href="#" target="_blank">
+        {% load static %}
+        <img class="app-icon rounded" src="{% static 'main/images/.png' %}" alt="image"> 
+        <small class="d-block font-weight-bold text-muted">Site Name</small>
+      </a>
+
+    </div> <!--END OF ROW 4-->
+{% endblock %}

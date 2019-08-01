@@ -1,0 +1,57 @@
+{% extends 'base/base.html' %}
+{% block title %}Maintenance{% endblock %}
+{% block subtitle %}Rardin Maintenance Portal{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <a class="app-container jumbotron bg-warning p-4 col m-5" href="../service/equip_ticket_form">
+          <i class="fas fa-tools fa-5x text-white"></i>
+          <p class="font-weight-bold m-0 text-white">Equipment Ticket</p>
+        </a>
+        <a class="app-container jumbotron bg-danger p-4 col m-5" href="../service/gen_ticket_form">
+          <i class="fas fa-paint-roller fa-5x text-white"></i>
+          <p class="font-weight-bold m-0 text-white">General Ticket</p>
+        </a>
+        <a class="app-container jumbotron bg-secondary p-4 col m-5" href="../service/tech_ticket_form" style="text-decoration: none;">
+          <i class="fas fa-desktop fa-5x text-white" ></i>
+          <p class="font-weight-bold m-0 text-white">Technology Ticket</p>
+        </a>
+    </div>  
+    <div class="row jumbotron p-2">
+      <h3 class="">Ticket Status</h3>
+
+      <table class="rounded table table-sm bg-light table-responsive-sm">
+        <thead class="bg-warning">
+          <tr>
+            <th scope="col">Opened</th>
+            <th scope="col">Store</th>
+            <th scope="col">Type</th>
+            <th scope="col">Assigned To</th>
+            <th scope="col">Status</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for ticket in tickets %}
+          <tr>
+            <td>{{ticket.created_at}}</td>
+            <td>{{ticket.store.store_id}}</td>
+            <td>{{ticket.t_type}}</td>
+            <td>{{ticket.assign_to}}</td>
+            <td>{{ticket.status}}</td>
+            <td>
+              <a href="/service/ticket_view/{{ticket.id}}/" class="far fa-eye btn btn-sm btn-link text-secondary"></a>
+              <a href="/service/ticket_update/{{ticket.id}}/" class="far fa-edit btn btn-sm  btn-link text-warning"></a>
+              {% if user.is_superuser %}
+              <a href="/service/ticket_delete/{{ticket.id}}/" class="fas fa-trash-alt btn btn-sm  btn-link text-danger"></a>
+              {% endif %}
+            </td>
+          </tr>
+          {% endfor %}
+          
+        </tbody>
+      </table>
+
+    </div>
+    
+{% endblock %}

@@ -1,0 +1,20 @@
+<h4 class="text-center jumbotron p-2 m-0 mb-1 col-12 bg-black text-warning">Messages</h4>
+{% for message in messages %}
+  {% if message.sender.user.id == user.id %}
+  <div class="jumbotron bg-warning my-1 col-8 p-2 ml-auto">
+    <div class="row">
+      <p class="mb-0 col-10">{{message.message}}</p>
+      <div class="col-2 text-right">
+        <button id="{{message.id}}" type="button" class="delete btn btn-sm fas fa-trash-alt text-danger" style="background: none" onclick="delete_message(this.id);"></button>
+      </div>
+    </div>
+    <small class="text-muted text-right d-block" >{{message.sender.user.first_name}} {{message.sender.user.last_name}} | {{message.created_at}}</small>
+    </div>
+  
+  {% else %}
+  <div class="jumbotron my-1 col-8 p-2 mr-auto">
+    <p class="mb-0">{{message.message}}</p>
+    <small class="text-muted text-right d-block" >{{message.sender.user.first_name}} {{message.sender.user.last_name}} | {{message.created_at}}</small>
+  </div>
+  {% endif %}
+  {% endfor %}
