@@ -54,17 +54,26 @@
 
     <div class="col-md-6 offset-md-1 jumbotron px-3 pt-3">
       <h3 class="jumbotron bg-danger text-black text-center py-1">Assignments</h3>
-      <div class="form-group jumbotron p-3">
-        <label for="type" class="d-block text-center font-weight-bold">Stores Assigned</label>
+      <div class="form-group jumbotron p-3" id="assignments">
+
+        <p class="d-block text-center font-weight-bold">Stores</p>
         {% for store in stores_assigned %}
         <div class="form-check form-check-inline">
-          <input class="form-check-input" type="checkbox" name="store_assigned" id="store_assigned_{{store.store_id}}" value="{{store.store_id}}" checked>
-          <label class="form-check-label" for="store_assigned_{{store.store_id}}">{{store.store_id}}</label>
+          <input class="form-check-input" type="checkbox" id="{{store.store_id}}" value="{{one_user.id}}" onclick="store_assign(this.id, this.value)" checked>
+          <label class="form-check-label" for="stores_assigned_{{store.store_id}}">{{store.store_id}}</label>
         </div>
         {% endfor %}
-      </div>
+        <!-- <p class="d-block text-center font-weight-bold">Stores Not Assigned</p> -->
+        {% for store in stores_not_assigned %}
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="checkbox" id="{{store.store_id}}" value="{{one_user.id}}" onclick="store_assign(this.id, this.value)">
+          <label class="form-check-label" for="stores_not_assigned_{{store.store_id}}">{{store.store_id}}</label>
+        </div>
+        {% endfor %}
+      
+      </div> <!--End of Assignments Container-->
 
-      <div class="form-group jumbotron p-3">
+      <!-- <div class="form-group jumbotron p-3">
         <label for="type" class="d-block text-center font-weight-bold">Stores Not Assigned</label>
         {% for store in stores_not_assigned %}
         <div class="form-check form-check-inline">
@@ -72,7 +81,7 @@
           <label class="form-check-label" for="store_not_assigned_{{store.store_id}}">{{store.store_id}}</label>
         </div>
         {% endfor %}
-      </div>
+      </div> -->
  
     </div><!--End of Right Col-->
   </div> <!--End of Form Row-->

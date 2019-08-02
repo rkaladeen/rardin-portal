@@ -8,5 +8,6 @@ urlpatterns = [
   path('profile_delete/<int:u_id>/', views.profile_delete),
 
   path('profile_update_process/<int:u_id>/', views.profile_update_process),
-
+  path('store_assign/<int:store_id>/<int:user_id>/', views.store_assign),
+  path('store_unassign/<int:store_id>/<int:user_id>/', views.store_unassign),
 ]

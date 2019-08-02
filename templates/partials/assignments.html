@@ -1,0 +1,14 @@
+<p class="d-block text-center font-weight-bold">Stores</p>
+  {% for store in stores_assigned %}
+  <div class="form-check form-check-inline">
+    <input class="form-check-input" type="checkbox" id="{{store.store_id}}" value="{{one_user.id}}" onclick="store_assign(this.id, this.value)" checked>
+    <label class="form-check-label" for="stores_assigned_{{store.store_id}}">{{store.store_id}}</label>
+  </div>
+  {% endfor %}
+  <!-- <p class="d-block text-center font-weight-bold">Stores Not Assigned</p> -->
+  {% for store in stores_not_assigned %}
+  <div class="form-check form-check-inline">
+    <input class="form-check-input" type="checkbox" id="{{store.store_id}}" value="{{one_user.id}}" onclick="store_assign(this.id, this.value)">
+    <label class="form-check-label" for="stores_not_assigned_{{store.store_id}}">{{store.store_id}}</label>
+  </div>
+  {% endfor %}

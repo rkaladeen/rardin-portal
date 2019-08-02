@@ -28,6 +28,7 @@ def profile_edit(request, u_id):
   context = {
     "one_user": Employee.objects.get(id=u_id),
     "dept_list": Department.objects.all(),
+    "all_stores": all_stores,
     "stores_assigned": store_assigned,
     "stores_not_assigned": store_not_assigned,
   }
@@ -50,5 +51,44 @@ def profile_update_process(request, u_id):
   user_to_update.save()
   user_to_update.user.save()
   
-
   return redirect(f"/user_profile/profile_view/{u_id}")
+
+@login_required(login_url='/login')
+def store_assign(request, store_id, user_id):
+  store_to_assign = Store.objects.get(store_id=store_id)
+  user_to_assign_store = Employee.objects.get(id=user_id)
+  store_to_assign.employees.add(user_to_assign_store)
+  store_to_assign.save()
+  print(f"{user_to_assign_store.user.first_name} assigned to store {store_to_assign.store_id}")
+
+  all_stores = Store.objects.all()
+  store_assigned = Employee.objects.get(id=user_id).stores_assigned.all()
+  store_not_assigned = all_stores.difference(store_assigned)
+  context = {
+    "one_user": user_to_assign_store,
+    "dept_list": Department.objects.all(),
+    "all_stores": all_stores,
+    "stores_assigned": store_assigned,
+    "stores_not_assigned": store_not_assigned,
+  }
+  return render(request, "partials/assignments.html", context)
+
+@login_required(login_url='/login')
+def store_unassign(request, store_id, user_id):
+  store_to_unassign = Store.objects.get(store_id=store_id)
+  user_to_unassign_store = Employee.objects.get(id=user_id)
+  store_to_unassign.employees.remove(user_to_unassign_store)
+  store_to_unassign.save()
+  print(f"{user_to_unassign_store.user.first_name} Unassigned from store {store_to_unassign.store_id}")
+
+  all_stores = Store.objects.all()
+  store_assigned = Employee.objects.get(id=user_id).stores_assigned.all()
+  store_not_assigned = all_stores.difference(store_assigned)
+  context = {
+    "one_user": user_to_unassign_store,
+    "dept_list": Department.objects.all(),
+    "all_stores": all_stores,
+    "stores_assigned": store_assigned,
+    "stores_not_assigned": store_not_assigned,
+  }
+  return render(request, "partials/assignments.html", context)
