@@ -22,6 +22,5 @@ admin.site.register(User, UserAdmin)
 
 # Register your models here.
 admin.site.register(Store)
-admin.site.register(Store_Assignment)
 admin.site.register(Department)
-admin.site.register(Dept_Assignment)
+admin.site.register(Position)

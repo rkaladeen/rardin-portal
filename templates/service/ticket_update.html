@@ -30,6 +30,7 @@
     <form action="/service/ticket_update_process/{{ticket.id}}/" method="POST">
       {% csrf_token %}
       <h4 class="text-center jumbotron p-2 m-0 mb-5 bg-warning text-black">Ticket Update Form</h4>
+      
       <div class="form-row">
         
         <div class="form-group col-md-6">
@@ -50,7 +51,7 @@
           <select id="assign_to" name="assign_to" class="form-control">
             <option selected>{{ticket.assign_to}}</option>
             {% for tech in tech_list %}
-            <option>{{tech.user.user.first_name}}</option>
+            <option>{{tech.user.first_name}}</option>
             {% endfor %}
           </select>
         </div>

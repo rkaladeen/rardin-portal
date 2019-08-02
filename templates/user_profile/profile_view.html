@@ -1,0 +1,19 @@
+{% extends 'base/base.html' %}
+{% block title %}User Admin{% endblock %}
+{% block subtitle %}User Admin{% endblock %}
+
+{% block content %}
+  <div class="jumbotron text-center mx-auto col-md-8">
+    <i class="fas fa-user-circle fa-9x text-warning"></i>
+    <h1>{{one_user.user.first_name}} {{one_user.user.last_name}}</h1>
+    <h3>{{one_user.job_title}}</h3>
+    <p>Username: {{one_user.user.username}}</p>
+    <p>Email: {{one_user.user.email}}</p>
+    <p>Department: {{one_user.department}}</p>
+    <p>Level: {{one_user.user_type}}</p>
+    <small class="">Created On: {{one_user.created_at}} | Updated On: {{one_user.updated_at}}</small>
+    
+  
+  </div>
+
+{% endblock %}

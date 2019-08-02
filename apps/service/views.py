@@ -13,17 +13,20 @@ def index(request):
 @login_required(login_url='/login')
 def equip_ticket_form(request):
   user = Employee.objects.get(id=request.user.id)
-  return render(request, "service/equip_ticket.html", {"store_list": Store_Assignment.objects.filter(user=user).order_by('store_id')})
+  context = {"store_assigned": user.stores_assigned.all().order_by('store_id')}
+  return render(request, "service/equip_ticket.html", context)
 
 @login_required(login_url='/login')
 def gen_ticket_form(request):
   user = Employee.objects.get(id=request.user.id)
-  return render(request, "service/gen_ticket.html", {"store_list": Store_Assignment.objects.filter(user=user).order_by('store_id')})
+  context = {"store_assigned": user.stores_assigned.all().order_by('store_id')}
+  return render(request, "service/gen_ticket.html", context)
 
 @login_required(login_url='/login')
 def tech_ticket_form(request):
   user = Employee.objects.get(id=request.user.id)
-  return render(request, "service/tech_ticket.html", {"store_list": Store_Assignment.objects.filter(user=user).order_by('store_id')})
+  context = {"store_assigned": user.stores_assigned.all().order_by('store_id')}
+  return render(request, "service/tech_ticket.html", context)
 
 def create_ticket(request):
   user = Employee.objects.get(id=request.user.id)
@@ -51,11 +54,13 @@ def ticket_delete(request, tkt_id):
 
 @login_required(login_url='/login')
 def ticket_update(request, tkt_id):
-  dept = Department.objects.get(dept_id='100')
+  ticket = Ticket.objects.get(id=tkt_id)
+  dept_to_assign = ticket.t_type
   context = {
     "ticket": Ticket.objects.get(id=tkt_id),
-    "tech_list": Dept_Assignment.objects.filter(department=dept)
+    "tech_list": Employee.objects.filter(department=dept_to_assign)
   }
+  
   return render(request, "service/ticket_update.html", context)
 
 def ticket_update_process(request, tkt_id):

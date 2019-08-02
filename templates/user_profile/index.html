@@ -1,0 +1,36 @@
+{% extends 'base/base.html' %}
+{% block title %}User Admin{% endblock %}
+{% block subtitle %}User Admin{% endblock %}
+
+{% block content %}
+<table class="rounded table table-sm bg-light table-responsive-sm">
+  <thead class="bg-warning">
+    <tr>
+      <th scope="col">Full Name</th>
+      <th scope="col">Email</th>
+      <th scope="col">Department</th>
+      <th scope="col">Title</th>
+      <th scope="col">Level</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for one_user in users %}
+    <tr>
+      <td>{{one_user.user.first_name}} {{one_user.user.last_name}}</td>
+      <td>{{one_user.user.email}}</td>
+      <td>{{one_user.department}}</td>
+      <td>{{one_user.job_title}}</td>
+      <td>{{one_user.user_type}}</td>
+      <td>
+        <a href="/user_profile/profile_view/{{one_user.id}}/" class="far fa-eye btn btn-sm btn-link text-secondary"></a>
+        <a href="/user_profile/profile_edit/{{one_user.id}}/" class="far fa-edit btn btn-sm  btn-link text-warning"></a>
+        <a href="/user_profile/profile_delete/{{one_user.id}}/" class="fas fa-trash-alt btn btn-sm  btn-link text-danger"></a>
+        
+      </td>
+    </tr>
+    {% endfor %}
+    
+  </tbody>
+</table>
+{% endblock %}

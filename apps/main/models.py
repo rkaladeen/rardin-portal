@@ -1,6 +1,17 @@
 from django.db import models
 from django.contrib.auth.models import User
-# from ..service.models import *
+
+class Employee(models.Model):
+  # id auto
+  user = models.OneToOneField(User, on_delete=models.CASCADE)
+  dob = models.DateField()
+  department = models.CharField(max_length=45, default="")
+  job_title = models.CharField(max_length=45, default="")
+  user_type = models.CharField(max_length=45, default="User")
+  telephone = models.CharField(max_length=11)
+  created_at = models.DateTimeField(auto_now_add=True)
+  updated_at = models.DateTimeField(auto_now=True)
+  # Stores Assigned attribute added from M2M relationship
 
 class Store(models.Model):
   # id auto
@@ -13,8 +24,8 @@ class Store(models.Model):
   zip_code = models.CharField(max_length=5) 
   created_at = models.DateTimeField(auto_now_add=True)
   updated_at = models.DateTimeField(auto_now=True)
+  employees = models.ManyToManyField(Employee, related_name="stores_assigned")
   
-
 class Department(models.Model):
   # id auto
   dept_id = models.CharField(max_length=3, primary_key=True)
@@ -22,23 +33,8 @@ class Department(models.Model):
   created_at = models.DateTimeField(auto_now_add=True)
   updated_at = models.DateTimeField(auto_now=True)
 
-class Employee(models.Model):
-  # id auto
-  user = models.OneToOneField(User, on_delete=models.CASCADE)
-  dob = models.DateField()
-  telephone = models.CharField(max_length=11)
+class Position(models.Model):
+  job_id = models.CharField(max_length=3, primary_key=True)
+  job_title = models.CharField(max_length=45)
   created_at = models.DateTimeField(auto_now_add=True)
   updated_at = models.DateTimeField(auto_now=True)
-
-class Dept_Assignment(models.Model):
-  user = models.ForeignKey(Employee, related_name="assigned_user_dept", on_delete=models.CASCADE)
-  department = models.ForeignKey(Department, related_name="assigned_dept", on_delete=models.SET_NULL, null=True)
-  created_at = models.DateTimeField(auto_now_add=True)
-  updated_at = models.DateTimeField(auto_now=True)
-
-class Store_Assignment(models.Model):
-  user = models.ForeignKey(Employee, related_name="assigned_user_store", on_delete=models.CASCADE)
-  store = models.ForeignKey(Store, related_name="assigned_store", on_delete=models.SET_NULL, null=True)
-  created_at = models.DateTimeField(auto_now_add=True)
-  updated_at = models.DateTimeField(auto_now=True)
-

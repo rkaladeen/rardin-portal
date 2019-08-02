@@ -28,8 +28,14 @@
       <ul class="navbar-nav mr-auto">
         {% if user.is_superuser %}
         <li class="nav-item text-center mr-3">
-          <a class="nav-link text-warning fas fa-users-cog d-block" href="/admin/"></a>
-          <small class="text-white d-block">Admin</small>
+          <a class="nav-link text-warning fas fa-cogs d-block" href="/admin/"></a>
+          <small class="text-white d-block">Site Admin</small>
+        </li>
+        {% endif %}
+        {% if user.is_superuser %}
+        <li class="nav-item text-center mr-3">
+          <a class="nav-link text-warning fas fa-users-cog d-block" href="/user_profile/"></a>
+          <small class="text-white d-block">User Admin</small>
         </li>
         {% endif %}
         <li class="nav-item text-center mr-3">
@@ -91,16 +97,15 @@
     </ul>  
   </nav>
   <div class="jumbotron main_header p-0">
-    <div class="bn-bg-img pt-5" style="background-image: url({% static 'main/images/hm.jpg' %})">
-      <h1 class="text-left pl-5 pb-5">{% block subtitle %}Rardin Companies{% endblock %}</h1>
-    </div>
+    <h1 class="bn-bg-img text-left pl-5 py-3" style="background-image: url({% static 'main/images/hm.jpg' %})">{% block subtitle %}Rardin Companies{% endblock %}</h1>
+    
   </div>
   <!--END OF NAV BAR-->
   <div class="container">
     {% block content %}
     {% endblock %}   
   </div>
-  <nav class="footer navbar navbar-expand-lg navbar-light bg-black my-0 py-0">
+  <nav class="footer navbar navbar-expand-lg navbar-light bg-warning my-0 py-0">
     <ul class="navbar-nav mx-auto d-inline">
       <li class="nav-item d-inline"><a class="footer-link nav-link text-danger d-inline" href="#">Contact</a></li>
       <li class="nav-item d-inline"><small class="footer-link nav-link text-danger d-inline">|</small></li>

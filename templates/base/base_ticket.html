@@ -17,8 +17,8 @@
           <label for="store_id">Store</label>
           <select id="store_id" name="store_id" class="form-control">
             <option selected>Choose...</option>
-            {% for store in store_list %}
-            <option >{{store.store.name}} - {{store.store_id}}</option>
+            {% for store in store_assigned %}
+            <option >{{store.name}} - {{store.store_id}}</option>
             {% endfor %}
           </select>
         </div>

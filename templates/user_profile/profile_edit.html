@@ -1,0 +1,81 @@
+{% extends 'base/base.html' %}
+{% block title %}User Admin{% endblock %}
+{% block subtitle %}User Admin{% endblock %}
+
+{% block content %}
+<div class="jumbotron pt-3">
+  
+  <h2 class="jumbotron bg-black text-warning text-center py-1">User Update</h2>
+  
+  
+  <div class="form-row">
+
+    <div class="col-md-5 jumbotron px-3 pt-3">
+      <h3 class="jumbotron bg-warning text-black text-center py-1">Profile</h3>
+      <form  action="/user_profile/profile_update_process/{{one_user.id}}/" method="POST">
+        {% csrf_token %}
+        <div class="form-group">
+          <label for="fname">First Name</label>
+          <input type="text" class="form-control" id="fname" name="fname" value="{{one_user.user.first_name}}">
+        </div>
+        <div class="form-group">
+          <label for="lname">Last Name</label>
+          <input type="text" class="form-control" id="lname" name="lname" value="{{one_user.user.last_name}}">
+        </div>
+        <div class="form-group">
+          <label for="em">Email</label>
+          <input type="text" class="form-control" id="em" name="em" value="{{one_user.user.email}}">
+        </div>
+        <div class="form-group">
+          <label for="dept">Department</label>
+          <select class="form-control" id="dept" name="dept">
+            <option selected>{{one_user.department}}</option>
+            {% for dept in dept_list %}
+            <option value="{{dept.id}}">{{dept.name}}</option>
+            {% endfor %}
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="title">Job Title</label>
+          <input type="text" class="form-control" id="title" name="title" value="{{one_user.job_title}}">
+        </div>
+        <div class="form-group">
+          <label for="type">User Type</label>
+          <select class="form-control" id="type" name="dept">
+            <option selected>{{one_user.user_type}}</option>
+            <option>Admin</option>
+            <option>Manager</option>
+            <option>User</option>
+          </select>
+        </div>
+      <button type="submit" class="btn btn-primary">Update</button>
+      </form>
+    </div> <!--End of Left Col-->
+
+    <div class="col-md-6 offset-md-1 jumbotron px-3 pt-3">
+      <h3 class="jumbotron bg-danger text-black text-center py-1">Assignments</h3>
+      <div class="form-group jumbotron p-3">
+        <label for="type" class="d-block text-center font-weight-bold">Stores Assigned</label>
+        {% for store in stores_assigned %}
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="checkbox" name="store_assigned" id="store_assigned_{{store.store_id}}" value="{{store.store_id}}" checked>
+          <label class="form-check-label" for="store_assigned_{{store.store_id}}">{{store.store_id}}</label>
+        </div>
+        {% endfor %}
+      </div>
+
+      <div class="form-group jumbotron p-3">
+        <label for="type" class="d-block text-center font-weight-bold">Stores Not Assigned</label>
+        {% for store in stores_not_assigned %}
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="checkbox" name="store_not_assigned_{{store.store_id}}" id="store_not_assigned_{{store.store_id}}" value="{{store.store_id}}">
+          <label class="form-check-label" for="store_not_assigned_{{store.store_id}}">{{store.store_id}}</label>
+        </div>
+        {% endfor %}
+      </div>
+ 
+    </div><!--End of Right Col-->
+  </div> <!--End of Form Row-->
+</div> <!--End of Jumbotron-->
+
+{% endblock %}
