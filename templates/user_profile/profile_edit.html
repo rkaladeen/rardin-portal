@@ -4,12 +4,8 @@
 
 {% block content %}
 <div class="jumbotron pt-3">
-  
   <h2 class="jumbotron bg-black text-warning text-center py-1">User Update</h2>
-  
-  
   <div class="form-row">
-
     <div class="col-md-5 jumbotron px-3 pt-3">
       <h3 class="jumbotron bg-warning text-black text-center py-1">Profile</h3>
       <form  action="/user_profile/profile_update_process/{{one_user.id}}/" method="POST">
@@ -29,23 +25,34 @@
         <div class="form-group">
           <label for="dept">Department</label>
           <select class="form-control" id="dept" name="dept">
-            <option selected>{{one_user.department}}</option>
-            {% for dept in dept_list %}
-            <option value="{{dept.id}}">{{dept.name}}</option>
+            <option selected>{{one_user.dept.name}}</option>
+            {% for dept in all_depts %}
+            {% if dept.name != one_user.dept.name %}
+            <option>{{dept.name}}</option>
+            {% endif %}
             {% endfor %}
           </select>
         </div>
         <div class="form-group">
-          <label for="title">Job Title</label>
-          <input type="text" class="form-control" id="title" name="title" value="{{one_user.job_title}}">
+          <label for="title">Title</label>
+          <select class="form-control" id="title" name="title">
+            <option selected>{{one_user.title.name}}</option>
+            {% for title in all_titles %}
+            {% if title.name != one_user.title.name %}
+            <option>{{title.name}}</option>
+            {% endif %}
+            {% endfor %}
+          </select>
         </div>
         <div class="form-group">
-          <label for="type">User Type</label>
-          <select class="form-control" id="type" name="dept">
-            <option selected>{{one_user.user_type}}</option>
-            <option>Admin</option>
-            <option>Manager</option>
-            <option>User</option>
+          <label for="level">Level</label>
+          <select class="form-control" id="level" name="level">
+            <option selected>{{one_user.level.name}}</option>
+            {% for level in all_levels %}
+            {% if level.name != one_user.level.name %}
+            <option>{{level.name}}</option>
+            {% endif %}
+            {% endfor %}
           </select>
         </div>
       <button type="submit" class="btn btn-primary">Update</button>
@@ -55,34 +62,22 @@
     <div class="col-md-6 offset-md-1 jumbotron px-3 pt-3">
       <h3 class="jumbotron bg-danger text-black text-center py-1">Assignments</h3>
       <div class="form-group jumbotron p-3" id="assignments">
-
         <p class="d-block text-center font-weight-bold">Stores</p>
+        <!--Assigned Stores-->
         {% for store in stores_assigned %}
         <div class="form-check form-check-inline">
           <input class="form-check-input" type="checkbox" id="{{store.store_id}}" value="{{one_user.id}}" onclick="store_assign(this.id, this.value)" checked>
           <label class="form-check-label" for="stores_assigned_{{store.store_id}}">{{store.store_id}}</label>
         </div>
         {% endfor %}
-        <!-- <p class="d-block text-center font-weight-bold">Stores Not Assigned</p> -->
+        <!--Unassigned Stores-->
         {% for store in stores_not_assigned %}
         <div class="form-check form-check-inline">
           <input class="form-check-input" type="checkbox" id="{{store.store_id}}" value="{{one_user.id}}" onclick="store_assign(this.id, this.value)">
           <label class="form-check-label" for="stores_not_assigned_{{store.store_id}}">{{store.store_id}}</label>
         </div>
         {% endfor %}
-      
       </div> <!--End of Assignments Container-->
-
-      <!-- <div class="form-group jumbotron p-3">
-        <label for="type" class="d-block text-center font-weight-bold">Stores Not Assigned</label>
-        {% for store in stores_not_assigned %}
-        <div class="form-check form-check-inline">
-          <input class="form-check-input" type="checkbox" name="store_not_assigned_{{store.store_id}}" id="store_not_assigned_{{store.store_id}}" value="{{store.store_id}}">
-          <label class="form-check-label" for="store_not_assigned_{{store.store_id}}">{{store.store_id}}</label>
-        </div>
-        {% endfor %}
-      </div> -->
- 
     </div><!--End of Right Col-->
   </div> <!--End of Form Row-->
 </div> <!--End of Jumbotron-->

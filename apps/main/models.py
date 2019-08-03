@@ -1,13 +1,33 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+class Department(models.Model):
+  # id auto
+  dept_id = models.CharField(max_length=3, primary_key=True)
+  name = models.CharField(max_length=45)
+  created_at = models.DateTimeField(auto_now_add=True)
+  updated_at = models.DateTimeField(auto_now=True)
+
+class Title(models.Model):
+  title_id = models.CharField(max_length=3, primary_key=True)
+  name = models.CharField(max_length=45)
+  created_at = models.DateTimeField(auto_now_add=True)
+  updated_at = models.DateTimeField(auto_now=True)
+
+class Level(models.Model):
+  level_id = models.CharField(max_length=1, primary_key=True)
+  name = models.CharField(max_length=45)
+  created_at = models.DateTimeField(auto_now_add=True)
+  updated_at = models.DateTimeField(auto_now=True)
+
+
 class Employee(models.Model):
   # id auto
   user = models.OneToOneField(User, on_delete=models.CASCADE)
   dob = models.DateField()
-  department = models.CharField(max_length=45, default="")
-  job_title = models.CharField(max_length=45, default="")
-  user_type = models.CharField(max_length=45, default="User")
+  dept = models.ForeignKey(Department, on_delete=models.SET_NULL, null=True, related_name="employee_dept")
+  title = models.ForeignKey(Title, on_delete=models.SET_NULL, null=True, related_name="employee_title")
+  level = models.ForeignKey(Level, on_delete=models.SET_NULL, null=True, related_name="employee_level")
   telephone = models.CharField(max_length=11)
   created_at = models.DateTimeField(auto_now_add=True)
   updated_at = models.DateTimeField(auto_now=True)
@@ -26,15 +46,4 @@ class Store(models.Model):
   updated_at = models.DateTimeField(auto_now=True)
   employees = models.ManyToManyField(Employee, related_name="stores_assigned")
   
-class Department(models.Model):
-  # id auto
-  dept_id = models.CharField(max_length=3, primary_key=True)
-  name = models.CharField(max_length=45)
-  created_at = models.DateTimeField(auto_now_add=True)
-  updated_at = models.DateTimeField(auto_now=True)
 
-class Position(models.Model):
-  job_id = models.CharField(max_length=3, primary_key=True)
-  job_title = models.CharField(max_length=45)
-  created_at = models.DateTimeField(auto_now_add=True)
-  updated_at = models.DateTimeField(auto_now=True)

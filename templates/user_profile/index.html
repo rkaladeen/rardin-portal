@@ -3,34 +3,58 @@
 {% block subtitle %}User Admin{% endblock %}
 
 {% block content %}
-<table class="rounded table table-sm bg-light table-responsive-sm">
-  <thead class="bg-warning">
-    <tr>
-      <th scope="col">Full Name</th>
-      <th scope="col">Email</th>
-      <th scope="col">Department</th>
-      <th scope="col">Title</th>
-      <th scope="col">Level</th>
-      <th scope="col">Action</th>
-    </tr>
-  </thead>
-  <tbody>
-    {% for one_user in users %}
-    <tr>
-      <td>{{one_user.user.first_name}} {{one_user.user.last_name}}</td>
-      <td>{{one_user.user.email}}</td>
-      <td>{{one_user.department}}</td>
-      <td>{{one_user.job_title}}</td>
-      <td>{{one_user.user_type}}</td>
-      <td>
-        <a href="/user_profile/profile_view/{{one_user.id}}/" class="far fa-eye btn btn-sm btn-link text-secondary"></a>
-        <a href="/user_profile/profile_edit/{{one_user.id}}/" class="far fa-edit btn btn-sm  btn-link text-warning"></a>
-        <a href="/user_profile/profile_delete/{{one_user.id}}/" class="fas fa-trash-alt btn btn-sm  btn-link text-danger"></a>
-        
-      </td>
-    </tr>
-    {% endfor %}
-    
-  </tbody>
-</table>
+<div class="row">
+  <a class="app-container jumbotron bg-warning p-4 col m-5" href="#">
+    <i class="fas fa-user-plus fa-5x text-white"></i>
+    <p class="font-weight-bold m-0 text-white">Add Employee</p>
+  </a>
+  <a class="app-container jumbotron bg-danger p-4 col m-5" href="#">
+    <i class="fas fa-user-check fa-5x text-white"></i>
+    <p class="font-weight-bold m-0 text-white">Approve Registration</p>
+  </a>
+  <a class="app-container jumbotron bg-secondary p-4 col m-5" href="#">
+    <i class="fas fa-clipboard-list fa-5x text-white" ></i>
+    <p class="font-weight-bold m-0 text-white">User Log</p>
+  </a>
+</div>  
+
+<div class="row jumbotron p-2 ">
+  <table class="rounded table table-sm bg-light table-responsive-sm">
+    <thead class="bg-warning">
+      <tr class="jumbotron bg-warning">
+        <th scope="col">Full Name</th>
+        <th scope="col">Email</th>
+        <th scope="col">Department</th>
+        <th scope="col">Title</th>
+        <th scope="col">Level</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for one_user in users %}
+      <tr class="jumbotron bg-light">
+        <td>{{one_user.user.first_name}} {{one_user.user.last_name}}</td>
+        <td>{{one_user.user.email}}</td>
+        <td>{{one_user.dept.name}}</td>
+        <td>{{one_user.title.name}}</td>
+        <td>{{one_user.level.name}}</td>
+        <td>
+          <a href="/user_profile/profile_view/{{one_user.id}}/" class="far fa-eye btn btn-sm btn-link text-secondary" title="view"></a>
+          <a href="/user_profile/profile_edit/{{one_user.id}}/" class="far fa-edit btn btn-sm  btn-link text-warning" title="edit"></a>
+          {% if one_user.id != user.id and one_user.user.is_active %}
+          <a href="/user_profile/profile_inactive/{{one_user.id}}/" class="fas fa-user-minus btn btn-sm btn-link text-black" title="Inactive"></a>
+          {% endif %}
+          {% if one_user.id != user.id and one_user.user.is_active == False %}
+          <a href="/user_profile/profile_active/{{one_user.id}}/" class="fas fa-user-plus btn btn-sm btn-link text-success" title="Active"></a>
+          {% endif %}
+          {% if one_user.id != user.id and user.is_superuser %}
+          <a href="/user_profile/profile_delete/{{one_user.id}}/" class="fas fa-user-times btn btn-sm btn-link text-danger" title="delete"></a>
+          {% endif %}
+        </td>
+      </tr>
+      {% endfor %}
+      
+    </tbody>
+  </table>
+</div>
 {% endblock %}

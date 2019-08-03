@@ -55,10 +55,10 @@ def ticket_delete(request, tkt_id):
 @login_required(login_url='/login')
 def ticket_update(request, tkt_id):
   ticket = Ticket.objects.get(id=tkt_id)
-  dept_to_assign = ticket.t_type
+  dept_to_assign = Department.objects.get(name=ticket.t_type)
   context = {
     "ticket": Ticket.objects.get(id=tkt_id),
-    "tech_list": Employee.objects.filter(department=dept_to_assign)
+    "tech_list": Employee.objects.filter(dept=dept_to_assign)
   }
   
   return render(request, "service/ticket_update.html", context)
@@ -66,6 +66,7 @@ def ticket_update(request, tkt_id):
 def ticket_update_process(request, tkt_id):
   user = Employee.objects.get(id=request.user.id)
   ticket_to_update = Ticket.objects.get(id=tkt_id)
+  ticket_to_update.priority = request.POST['priority']
   ticket_to_update.status = request.POST['status']
   ticket_to_update.assign_to = request.POST['assign_to']
   ticket_to_update.tech_note = request.POST['tech_note']

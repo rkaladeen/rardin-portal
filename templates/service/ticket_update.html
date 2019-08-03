@@ -32,8 +32,18 @@
       <h4 class="text-center jumbotron p-2 m-0 mb-5 bg-warning text-black">Ticket Update Form</h4>
       
       <div class="form-row">
+        <div class="form-group col-md-4">
+          <label for="priority">Priority</label>
+          <select id="priority" name="priority" class="form-control">
+            <option selected>{{ticket.priority}}</option>
+            <option class="text-secondary">Low</option>
+            <option class="text-warning">Med</option>
+            <option class="text-danger">High</option>
+          </select>
+        </div>
         
-        <div class="form-group col-md-6">
+
+        <div class="form-group col-md-4">
           <label for="status">Ticket Status</label>
           <select id="status" name="status" class="form-control">
             <option selected>{{ticket.status}}</option>
@@ -46,7 +56,7 @@
           </select>
         </div>
   
-        <div class="form-group col-md-6">
+        <div class="form-group col-md-4">
           <label for="assign_to">Assign Tech</label>
           <select id="assign_to" name="assign_to" class="form-control">
             <option selected>{{ticket.assign_to}}</option>

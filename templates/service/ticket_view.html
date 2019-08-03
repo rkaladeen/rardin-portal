@@ -24,11 +24,24 @@
     <div class="jumbotron col-lg-7 offset-lg-1 py-3 bg-light h-100">
       <h4 class="text-center jumbotron p-2 m-0 mb-5 bg-warning text-black">Ticket Status Details</h4>
       <div class="form-row">
-        <div class="form-group col-md-6">
+        <div class="form-group col-md-4">
+          <label for="priority">Ticket Priority</label>
+          {% if ticket.priority == 'Low' %}
+          <p class="text-secondary font-weight-bold">{{ticket.priority}}</p>
+          {% elif ticket.priority == 'Med' %}
+          <p class="text-warning font-weight-bold">{{ticket.priority}}</p>
+          {% elif ticket.priority == 'High' %}
+          <p class="text-danger font-weight-bold">{{ticket.priority}}</p>
+          {% elif ticket.priority == 'Unassigned' %}
+          <p class="text-muted" id="priority">{{ticket.priority}}</p>
+          {% endif %}
+            
+        </div>
+        <div class="form-group col-md-4">
           <label for="status">Ticket Status</label>
             <p class="text-muted" id="status">{{ticket.status}}</p>
         </div>
-        <div class="form-group col-md-6">
+        <div class="form-group col-md-4">
             <label for="assign_to">Assigned Tech</label>
               <p class="text-muted" id="assign_to">{{ticket.assign_to}}</p>
           </div>

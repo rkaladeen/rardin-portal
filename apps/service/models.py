@@ -11,6 +11,7 @@ class Ticket(models.Model):
   ts = models.TextField()
   status = models.CharField(max_length=45, default = 'Not Acknowledged')
   assign_to = models.CharField(max_length=45, default = 'Unassigned')
+  priority = models.CharField(max_length=45, default = 'Unassigned')
   tech_note = models.TextField(default='')
   res_note = models.TextField(default='')
   creator = models.ForeignKey(Employee, on_delete=models.SET_NULL, null=True, related_name="creator_ticket")

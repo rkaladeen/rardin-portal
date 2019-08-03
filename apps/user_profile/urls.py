@@ -5,6 +5,8 @@ urlpatterns = [
   path('', views.index),
   path('profile_view/<int:u_id>/', views.profile_view),
   path('profile_edit/<int:u_id>/', views.profile_edit),
+  path('profile_active/<int:u_id>/', views.profile_active),
+  path('profile_inactive/<int:u_id>/', views.profile_inactive),
   path('profile_delete/<int:u_id>/', views.profile_delete),
 
   path('profile_update_process/<int:u_id>/', views.profile_update_process),
