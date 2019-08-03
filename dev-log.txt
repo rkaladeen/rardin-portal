@@ -58,7 +58,12 @@ To Do Tomorrow:
 Possible Additional Work:
 1. Begin designing my_shift application for Shift Managers
 
+08/02/2019 23:00
+- Worked on user admin and completed store assignment check boxes with ajax
 
+To Do Tomorrow:
+1. Add create user, approve user which is extension of create with prefilled fields from register page to be added
+2. Begin designing my_shift application for Shift Managers
 
 
 Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti porro quis numquam dicta tempora exercitationem quas voluptatibus praesentium laborum explicabo dolorum culpa fugit quod similique quos, laudantium ex quasi obcaecati.
