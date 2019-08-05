@@ -6,6 +6,7 @@
   <div class="jumbotron bg-light">
     <form action="/service/create_ticket/" method="POST">
       {% csrf_token %}
+      <h2 class="jumbotron bg-black text-warning text-center py-1">{% block tickettitle %}{% endblock %}</h2>
       <div class="form-row">
         <input type="hidden" name="t_type" value="{% block t_type %}{% endblock %}">
         <div class="form-group col-md-6">
@@ -34,11 +35,12 @@
         <label for="desc">Detailed Description</label>
         <textarea class="form-control" name="desc" id="desc" rows="3" placeholder="What problems are you experiencing?"></textarea>
       </div>
-
+      {% block ts %}
       <div class="form-group">
         <label for="ts">Troubleshooting Completed</label>
         <textarea class="form-control" name="ts" id="ts" rows="3" placeholder="What troubleshooting have you done?"></textarea>
       </div>
+      {% endblock %}
       <input type="submit" class="btn btn-danger text-warning font-weight-bold">
     </form>
   </div>  

@@ -14,3 +14,7 @@ function store_assign(store_id, user_id){
     })
   }
 }
+
+// function validate_user_form(){
+
+// }

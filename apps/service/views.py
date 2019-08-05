@@ -41,7 +41,10 @@ def create_ticket(request):
   submit_by=request.POST['submit_by']
   short_desc=request.POST['short_desc']
   desc=request.POST['desc']
-  ts=request.POST['ts']
+  if request.POST['t_type'] == 'General':
+    ts="NA"
+  else:
+    ts=request.POST['ts']
   t_type=request.POST['t_type']
   # Move to Models
   Ticket.objects.create(store=store, submit_by=submit_by, t_type=t_type, short_desc=short_desc, desc=desc, ts=ts, creator=creator, last_view=creator, last_update=creator)

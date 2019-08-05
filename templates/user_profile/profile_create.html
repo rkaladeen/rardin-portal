@@ -1,0 +1,105 @@
+{% extends 'base/base.html' %}
+{% block title %}User Admin{% endblock %}
+{% block subtitle %}User Admin{% endblock %}
+
+{% block content %}
+<div class="jumbotron pt-3">
+  <h2 class="jumbotron bg-black text-warning text-center py-1">Create Employee</h2>
+  
+  <form action="/user_profile/profile_create_process/" method="POST" class="row" autocomplete="off" id="regForm">
+    {% csrf_token %}
+    <div class="col">
+      <h3 class="jumbotron bg-warning text-black text-center py-1">Employee Details</h3>
+      <div class="form-group">
+        <label for="fname">First Name</label>
+        <div id="fnameMsg"></div>  <!-- AJAX Implemented here to check first name-->
+        <input type="text" class="form-control" id="fname" name="fname" value="{{request.session.profile_temp.fname}}">
+      </div>
+      <div class="form-group">
+        <label for="lname">Last Name</label>
+        <div id="lnameMsg"></div>  <!-- AJAX Implemented here to check last name-->
+        <input type="text" class="form-control" id="lname" name="lname">
+      </div>
+      <div class="form-group">
+        <label for="em">Business Email</label>
+        <div id="emailMsg"></div>  <!-- AJAX Implemented here to check email-->
+        <input type="text" class="form-control" id="em" name="em">
+      </div>
+      <div class="form-group">
+        <label for="uname">Username</label>
+        <input type="text" class="form-control" id="uname" name="uname">
+      </div>
+      <div class="form-group">
+        <label for="pw">Password</label>
+        <div id="pwordMsg"></div>  <!-- AJAX Implemented here to check email-->
+        <input type="password" class="form-control" id="pw" name="pw">
+      </div>
+      <div class="form-group">
+        <label for="cpw">Confirm Password</label>
+        <div id="c_pwordMsg"></div>  <!-- AJAX Implemented here to check email-->
+        <input type="password" class="form-control" id="cpw" name="cpw">
+      </div>
+      <div class="form-group">
+        <label for="phone">Telephone #</label>
+        <input type="text" class="form-control" id="phone" name="phone" placeholder="123-456-7890">
+      </div>
+      <div class="form-group">
+        <label for="dob">Date of Birth</label>
+        <div id="dobMsg"></div>  <!-- AJAX Implemented here to check email-->
+        <input type="date" class="form-control" id="dob" name="dob">
+      </div>
+      <div class="form-group">
+      <label class="d-block">Gender</label>
+        <input type="hidden" name="gender" value="">
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="gender" id="inlineRadio1" value="Male">
+          <label class="form-check-label" for="inlineRadio1">Male</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="gender" id="inlineRadio2" value="Female">
+          <label class="form-check-label" for="inlineRadio2">Female</label>
+        </div>
+      </div>
+    </div> <!--End of Left Column-->
+
+    <div class="col">
+      <h3 class="jumbotron bg-warning text-black text-center py-1">Employee Groups</h3>
+      <div class="form-group">
+        <label for="dept">Department</label>
+        <select class="form-control" id="dept" name="dept">
+          <option>Choose a Department ...</option>
+          {% for dept in all_depts %}
+          <option>{{dept.name}}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="title">Title</label>
+        <select class="form-control" id="title" name="title">
+          <option>Choose a Title ...</option>
+          {% for title in all_titles %}
+          <option>{{title.name}}</option>           
+          {% endfor %}
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="level">Level</label>
+        <select class="form-control" id="level" name="level">
+          <option>Choose a Level ...</option>
+          {% for level in all_levels %}
+          <option>{{level.name}}</option>
+          {% endfor %}
+        </select>
+      </div>
+    
+    <button type="submit" class="btn btn-primary">Create</button>
+    <small class="text-danger">{{request.session.profile_temp.error}}</small>
+    </div> <!--End of Right Column-->
+  </form>
+    
+
+    
+  
+</div> <!--End of Jumbotron-->
+
+{% endblock %}
