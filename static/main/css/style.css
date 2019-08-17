@@ -68,11 +68,10 @@ p, h1, h2, h3, h4, h5, small {
   max-height: 100px;
 }
 
-
-
 .main_header, .navbar, .jumbotron {
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
+
 h1, td {
   text-shadow: 2px 2px 4px #00000033;
 }
